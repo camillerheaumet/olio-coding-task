@@ -1,25 +1,24 @@
-import logo from './logo.svg';
+import React from "react";
+import { Route, withRouter } from 'react-router-dom'
+
+import Navbar from './containers/Navbar'
+import HomePage from './containers/HomePage'
+import List from './containers/ListPage'
+import Map from './containers/MapPage'
+
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+class App extends React.Component {
+  render() {
+    return (
+      <div className="App">
+        <Route path='/' render={() => <Navbar />} />
+        <Route exact path='/' component={HomePage} />
+        <Route exact path='/list' render={() => <List />} />
+        <Route exact path='/map' render={() => <Map />} />
+      </div>
+    );
+  };
+};
 
-export default App;
+export default withRouter(App);
