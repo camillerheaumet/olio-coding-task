@@ -1,12 +1,6 @@
 import React from 'react'
 
 class ArticleCard extends React.Component {
-  state = { expanded: false }
-  
-  handleExpandClick = () => {
-    this.setState(state => ({ expanded: !state.expanded }))
-  };
-
   getArticleImage = () => {
     if (this.props.article.images[0].files.original === '') {
        return <img src="icon-no-image.png" alt="default" height="100px" width="100px"/>
@@ -16,23 +10,17 @@ class ArticleCard extends React.Component {
   }
 
   render () {
-    const { article } = this.props
+    const { article, handleSelectArticle } = this.props
 
     return (
-      <div className='article-card'>
+      <div className='article-card' onClick={() => handleSelectArticle(article)}>
         <h3>{article.title}</h3>
         <div>{this.getArticleImage()}</div>
-        
-        <button onClick={() => this.handleExpandClick()}>{
-          this.state.expanded ?
-          'Hide details': 'Reveal details'}
-        </button>
-        {this.state.expanded ?
-          <div>
-            <h4>Description:</h4>
-            <p>{article.description}</p>
-          </div>
-        : null}
+
+        <div>
+          <h4>Description:</h4>
+          <p>{article.description}</p>
+        </div>
       </div>
     )
   }

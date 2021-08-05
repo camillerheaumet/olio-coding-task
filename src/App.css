@@ -19,6 +19,7 @@ body {
   padding: 10px;
   transition: all 0.5s ease;
   transform: scale(1);
+  font-weight: 700;
 }
 
 .nav_list_item:hover,
@@ -63,14 +64,61 @@ a {
 }
 
 .list-page {
+  display: flex;
+  flex-direction: column;
+  margin: 48px;
+}
+
+.search-form {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.search-input {
+  height: 20px;
+  border: none;
+  border-radius: 10px;
+  padding: 8px 10px 5px;
+  margin-right: 10px;
+  font-family: monospace;
+  color: #9633a9;
+  background: #9de0c6;
+}
+
+.search-input::placeholder {
+  color: #9633a9;
+}
+
+.search-select {
+  height: 30px;
+  border: none;
+  border-radius: 10px;
+  padding: 5px 10px;
+  color: #9633a9;
+  font-family: monospace;
+  cursor: pointer;
+  background: #9de0c6;
+}
+
+.search-input:focus,
+.search-select:focus {
+  outline: none;
+}
+
+.articles-container {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  margin: 48px;
   grid-gap: 24px;
 }
 
 .article-card {
   
+}
+
+.article-details {
+  padding: 48px;
 }
 
 .map-page {
@@ -84,6 +132,11 @@ a {
   position: relative;
   cursor: pointer;
   z-index: 9999;
+  transition: all 0.5s ease;
+}
+
+.marker-container:hover {
+  transform: scale(1.2);
 }
 
 .marker-icon {
@@ -94,3 +147,55 @@ a {
   right: -26px;
 }
 
+.marker-icon.selected {
+  filter: hue-rotate(280deg);
+}
+
+.modal-container {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: #0000004d;
+}
+
+.modal-article-details {
+  position: absolute;
+  top: 48px;
+  bottom: 48px;
+  right: 48px;
+  left: 48px;
+  border-radius: 10px;
+  background: #9de0c6;
+}
+
+.close-button {
+  position: absolute;
+  right: 32px;
+  top: 32px;
+  width: 32px;
+  height: 32px;
+  opacity: 0.3;
+}
+
+.close-button:hover {
+  opacity: 1;
+}
+
+.close-button:before, .close-button:after {
+  position: absolute;
+  left: 15px;
+  content: ' ';
+  height: 33px;
+  width: 2px;
+  background-color: #9633a9;
+}
+
+.close-button:before {
+  transform: rotate(45deg);
+}
+
+.close-button:after {
+  transform: rotate(-45deg);
+}

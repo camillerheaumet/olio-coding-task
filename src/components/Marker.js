@@ -4,14 +4,14 @@ class Marker extends React.Component {
   handleMarkerClick(event) {
     event.stopPropagation();
 
-    this.props.openDetails(this.props.article)
+    this.props.openDetails(this.props.articleId);
   }
 
   render() {
-    const { article } = this.props
+    const { active, text } = this.props
     return (
       <div className='marker-container'>
-        <img className='marker-icon' src="icon-marker.png" alt={`${article.text}`} onClick={(event) => this.handleMarkerClick(event)}/>
+        <img className={active ? 'marker-icon selected' : 'marker-icon'} src="icon-marker.png" alt={`${text}`} onClick={(event) => this.handleMarkerClick(event)}/>
       </div>
     )
   }

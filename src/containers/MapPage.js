@@ -2,6 +2,7 @@ import React from 'react'
 import GoogleMapReact from 'google-map-react';
 
 import Marker from '../components/Marker'
+import ArticleDetails from '../components/ArticleDetails'
 
 const getMapBounds = (map, maps, articles) => {
   const bounds = new maps.LatLngBounds();
@@ -34,8 +35,10 @@ const apiIsLoaded = (map, maps, articles) => {
 class MapPage extends React.Component {
   state = { currentArticle: null }
   
-  openDetails = (article) => {
-    this.setState(state => ({ currentArticle: article }));
+  openDetails = (articleId) => {
+    const article = this.props.allArticles.find(article => article.id === articleId);
+
+    this.setState({ currentArticle: article });
   };
 
   render() {
@@ -44,8 +47,9 @@ class MapPage extends React.Component {
       lng: -3.77
     };
 
-    const { allArticles } = this.props
-    const { openDetails } = this
+    const { allArticles } = this.props;
+    const { currentArticle } = this.state;
+    const { openDetails } = this;
 
     return (
       <div className='map-page'>
@@ -57,16 +61,20 @@ class MapPage extends React.Component {
         >
           {allArticles.map((article) => (
             <Marker
+              active={article === currentArticle}
               key={article.id}
-              article={article}
+              articleId={article.id}
               lat={article.location.latitude}
               lng={article.location.longitude}
+              text={article.text}
               openDetails={openDetails}
             />
           ))}
         </GoogleMapReact>
 
-        {this.state.currentArticle ? <p>{this.state.currentArticle.title}</p> : null}
+        {this.state.currentArticle ?
+          <ArticleDetails article={this.state.currentArticle}/>
+        : null}
       </div>
     );
   }
