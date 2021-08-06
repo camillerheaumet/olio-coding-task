@@ -26,6 +26,7 @@ body {
 .homepage-card:hover,
 .article-card:hover {
   transform: scale(1.05);
+  z-index: 1;
 }
 
 a {
@@ -113,18 +114,74 @@ a {
   grid-gap: 24px;
 }
 
-.article-card {
-  
+.ellipsis-2 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
-.article-details {
-  padding: 48px;
+.flex-3 {
+  flex: 3 !important;
 }
 
-.map-page {
+.tag {
+  height: 48px;
+  width: 48px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+  right: 24px;
+
+  border-radius: 24px;
+  background: red;
+  color: white;
+  font-size: 12px;
+}
+
+.details-container {
+  display: flex;
+}
+
+.details-content {
+  flex: 1;
+  padding: 12px;
+}
+
+.details-content.map {
+  text-align: center;
+}
+
+.details-content h3 {
+  margin-top: 0;
+}
+.details-content h4,
+.details-content p {
+  margin: 0;
+}
+
+.details-content div {
+  margin: 24px 0;
+}
+
+.two-columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-gap: 12px
+}
+
+.map-page,
+.map-article {
+  padding: 24px;
+}
+
+.map-container {
   height: 50vh;
   width: 50%;
-  padding: 24px;
   margin: auto;
 }
 
@@ -158,6 +215,7 @@ a {
   right: 0;
   left: 0;
   background: #0000004d;
+  z-index: 10;
 }
 
 .modal-article-details {
@@ -168,6 +226,8 @@ a {
   left: 48px;
   border-radius: 10px;
   background: #9de0c6;
+  overflow: scroll;
+  padding: 48px;
 }
 
 .close-button {
@@ -198,4 +258,10 @@ a {
 
 .close-button:after {
   transform: rotate(-45deg);
+}
+
+.simple-map {
+  height: 50vh;
+  width: 50%;
+  margin: auto !important;
 }

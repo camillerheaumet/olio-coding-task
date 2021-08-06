@@ -52,29 +52,34 @@ class MapPage extends React.Component {
     const { openDetails } = this;
 
     return (
-      <div className='map-page'>
-        <GoogleMapReact
-          defaultCenter={defaultCenter}
-          defaultZoom={11}
-          yesIWantToUseGoogleMapApiInternals
-          onGoogleApiLoaded={({ map, maps }) => apiIsLoaded(map, maps, allArticles)}
-        >
-          {allArticles.map((article) => (
-            <Marker
-              active={article === currentArticle}
-              key={article.id}
-              articleId={article.id}
-              lat={article.location.latitude}
-              lng={article.location.longitude}
-              text={article.text}
-              openDetails={openDetails}
-            />
-          ))}
-        </GoogleMapReact>
+      <div className="map-page">
+        <div className="map-container">
+          <GoogleMapReact
+            className="map-container"
+            defaultCenter={defaultCenter}
+            defaultZoom={11}
+            yesIWantToUseGoogleMapApiInternals
+            onGoogleApiLoaded={({ map, maps }) => apiIsLoaded(map, maps, allArticles)}
+          >
+            {allArticles.map((article) => (
+              <Marker
+                active={article === currentArticle}
+                key={article.id}
+                articleId={article.id}
+                lat={article.location.latitude}
+                lng={article.location.longitude}
+                text={article.text}
+                openDetails={openDetails}
+              />
+            ))}
+          </GoogleMapReact>
+        </div>
 
-        {this.state.currentArticle ?
-          <ArticleDetails article={this.state.currentArticle}/>
-        : null}
+        <div className="map-article">
+          {this.state.currentArticle ?
+            <ArticleDetails article={this.state.currentArticle} locationOn={false}/>
+          : null}
+        </div>
       </div>
     );
   }

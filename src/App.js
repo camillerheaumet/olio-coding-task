@@ -29,10 +29,10 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Route path='/' render={() => <Navbar />} />
-        <Route exact path='/' render={() => <HomePage />} />
-        <Route exact path='/list' render={props => <List {...props} allArticles={this.state.allArticles} />} />
-        <Route exact path='/map' render={props => <Map {...props} allArticles={this.state.allArticles} />} />
+        <Route path="/" render={() => <Navbar />} />
+        <Route exact path="/" render={() => <HomePage />} />
+        <Route exact path="/list" render={props => <List {...props} allArticles={this.state.allArticles} />} />
+        <Route exact path="/map" render={props => <Map {...props} allArticles={this.state.allArticles} />} />
       </div>
     );
   };
