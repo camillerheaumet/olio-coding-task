@@ -20,7 +20,7 @@ class ArticleCard extends React.Component {
   getPrice = () => {
     let currency = '$'
     if (this.props.article.value.currency === 'EUR') {
-      currency = '£'
+      currency = '€'
     }
 
     return `${currency}${this.props.article.value.price}`

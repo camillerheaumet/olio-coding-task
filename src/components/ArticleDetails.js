@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import SimpleMap from '../components/SimpleMap'
 
 class ArticleDetails extends React.Component {
@@ -23,7 +23,7 @@ class ArticleDetails extends React.Component {
   getPrice = () => {
     let currency = '$'
     if (this.props.article.value.currency === 'EUR') {
-      currency = '£'
+      currency = '€'
     }
 
     return `${currency}${this.props.article.value.price}`
